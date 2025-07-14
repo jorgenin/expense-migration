@@ -1,0 +1,43 @@
+{
+  "name": "migrate_expenses",
+  "version": "1.0.0",
+  "description": "Migration tool for Coda expense data with file processing and S3 upload",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsx src/index.ts",
+    "analyze": "tsx src/index.ts -- --analyze",
+    "migrate": "tsx src/index.ts -- --migrate",
+    "recover": "tsx src/index.ts -- --recover",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "coda",
+    "migration",
+    "pdf",
+    "s3",
+    "expenses"
+  ],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.11.1",
+  "devDependencies": {
+    "@types/node": "^20.19.7",
+    "tsx": "latest",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.844.0",
+    "@aws-sdk/s3-request-presigner": "^3.844.0",
+    "@tanstack/eslint-config": "^0.2.0",
+    "@types/js-yaml": "^4.0.9",
+    "dotenv": "^16.6.1",
+    "eslint-plugin-unused-imports": "^4.1.4",
+    "js-yaml": "^4.1.0",
+    "pdf-lib": "^1.17.1",
+    "pdf2pic": "^3.2.0",
+    "sharp": "^0.34.3",
+    "typescript-eslint": "^8.37.0"
+  }
+}

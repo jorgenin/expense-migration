@@ -1,0 +1,67 @@
+# Migration Configuration File
+# This file defines how to map columns between source and destination tables
+
+migration:
+  # Source and destination table configuration
+  source:
+    docId: "c3f76sgO8s"
+    tableId: "grid-a3EoctjUSV"
+  
+  destination:
+    docId: "c3f76sgO8s"  # Change this to your destination doc ID if different
+    tableId: "grid-LmSjYH3tPB"
+  
+  # Processing settings
+  settings:
+    batchSize: 100  # Process in chunks of 100 rows (max allowed by API for fetching)
+    insertBatchSize: 20  # Insert rows in batches of 20 (for better performance)
+    migrationFolder: "Migration"
+  
+  # Column mappings: source_column_name -> destination_column_name
+  # Use exact column names as they appear in Coda
+  columnMappings:
+    # Core expense fields
+    "Amount": "Amount"
+    "Category (new)": "Category"  # Maps Category (new) to Category
+    "Customer": "Customer"
+    "Date logged": "Date logged"
+    "Department": "Department"
+    "Description": "Description"
+    "Logged by": "Logged by"
+    "Notes": "Notes"
+    "Payment method": "Payment method"
+    "Pre-sale stage": "Pre-sale stage"
+    "Project phase": "Project phase"
+    "Reimbursement": "Reimbursement"
+    "Status": "Status"
+    "Transaction date": "Transaction date"
+    "Update status": "Status"  # Maps Update status to Status as well
+    "Vendor": "Vendor"
+    
+    # Special handling for attachments
+    "Record file": "Receipt"  # Maps Record file attachments to Receipt URL field
+  
+  # Columns to skip (will not be migrated)
+  skipColumns:
+    - "Ref #"           # Display column, usually calculated
+    - "Modified on"     # Usually auto-calculated
+    - "Delivery"        # Not present in destination
+    - "In QB"          # Not present in destination  
+    - "Individual"     # Not present in destination
+    - "Tags (old)"     # Not present in destination
+    - "Type"           # Not present in destination
+
+  # Column transformations for specific data types
+  transformations:
+    # Handle different data types between source and destination
+    "Payment method":
+      from: "select"
+      to: "lookup"
+      # Will convert select values to lookup references
+    
+  # File processing settings
+  fileProcessing:
+    supportedImageTypes: [".jpg", ".jpeg", ".png", ".gif", ".bmp", ".webp"]
+    supportedDocTypes: [".pdf", ".doc", ".docx"]
+    defaultQuality: 90
+    createPlaceholderForUnsupported: true 
